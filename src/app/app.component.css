@@ -1,0 +1,17 @@
+.navbar {
+    padding: 0;
+    margin-bottom: 0;
+}
+.navbar-nav .active a {
+    background-color: #04AA6D;
+    color: white;
+}
+.navbar-nav a {
+    font-weight:500;
+}
+
+.right-icon {
+    float: right;
+    display: inline-block;
+    margin-top: 2px;
+}
