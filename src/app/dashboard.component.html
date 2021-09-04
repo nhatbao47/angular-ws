@@ -1,13 +1,13 @@
 <div class="container-fluid px-2">
     <div class="row">
         <div class="col-md-3">
-            <new-tasks></new-tasks>
+            <new-tasks [tasks]="newTasks"></new-tasks>
         </div>
         <div class="col-md-3">
-            <inprogress-tasks></inprogress-tasks>
+            <inprogress-tasks [tasks]="inprogressTasks"></inprogress-tasks>
         </div>
         <div class="col-md-3">
-            <completed-tasks></completed-tasks>
+            <completed-tasks [tasks]="completedTasks"></completed-tasks>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Task } from "./task";
 
 @Component({
     selector: 'inprogress-tasks',
@@ -6,4 +7,6 @@ import { Component } from "@angular/core";
     styleUrls: ['./inprogress-tasks.component.css']
 })
 
-export class InprogressTasksComponent { }
+export class InprogressTasksComponent {
+    @Input() tasks!: Task[];
+}

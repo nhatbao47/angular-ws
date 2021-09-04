@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
+import { Task } from "./task";
+import { TaskPreviewComponent } from "./task-preview.component";
 
 @Component({
     selector: 'completed-tasks',
@@ -6,4 +8,11 @@ import { Component } from "@angular/core";
     styleUrls: ['./completed-tasks.component.css']
 })
 
-export class CompletedTasksComponent { }
+export class CompletedTasksComponent {
+    @Input() tasks!: Task[];
+    @ViewChild(TaskPreviewComponent) previewComponent!: TaskPreviewComponent;
+
+    onPreview(task: Task): void {
+        this.previewComponent.onPreview(task);
+    }
+}

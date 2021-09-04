@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Task } from "./task";
 
 @Component({
     selector: 'new-tasks',
@@ -6,4 +7,6 @@ import { Component } from "@angular/core";
     styleUrls: ['./new-tasks.component.css']
 })
 
-export class NewTasksComponent { }
+export class NewTasksComponent {
+    @Input() tasks!: Task[];
+}

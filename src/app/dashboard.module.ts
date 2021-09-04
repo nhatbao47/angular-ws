@@ -4,10 +4,17 @@ import { CompletedTasksComponent } from "./completed-tasks.component";
 import { DashboardComponent } from "./dashboard.component";
 import { InprogressTasksComponent } from "./inprogress-tasks.component";
 import { NewTasksComponent } from "./new-tasks.component";
+import { TaskPreviewComponent } from "./task-preview.component";
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [DashboardComponent, NewTasksComponent, InprogressTasksComponent, CompletedTasksComponent],
+    declarations: [
+        DashboardComponent,
+        NewTasksComponent,
+        InprogressTasksComponent,
+        CompletedTasksComponent,
+        TaskPreviewComponent
+    ],
     exports: [DashboardComponent]
 })
 
