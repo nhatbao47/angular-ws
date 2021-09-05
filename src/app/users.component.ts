@@ -12,6 +12,7 @@ import { UserService } from "./user.service";
 
 export class UsersComponent implements OnInit, OnDestroy {
     users: User[] = [];
+    newUserVisible: boolean = false;
     private ngUnsubscribe = new Subject();
 
     constructor(private userService: UserService) { }
@@ -24,6 +25,19 @@ export class UsersComponent implements OnInit, OnDestroy {
                 takeUntil(this.ngUnsubscribe)
             )
             .subscribe(users => this.users = users);
+    }
+
+    onDisplayNewUser() {
+        this.newUserVisible = true;
+    }
+
+    onCancel() {
+        this.newUserVisible = false;
+    }
+
+    onCreateNewUser(name: string) {
+        this.newUserVisible = false;
+        console.log(name);
     }
 
     ngOnDestroy() {

@@ -1,0 +1,8 @@
+.card-custom {
+    border-color: #3289C8;
+}
+.card-custom .card-header {
+    height: 55px;
+    color: #fff;
+    background-color: #3289C8;
+}

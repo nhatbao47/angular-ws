@@ -1,17 +1,4 @@
-.card {
-    border-color: #3289C8;
-}
-.card-header {
-    height: 55px;
-}
-.card-header, .btn-schedule {
-    color: #fff;
-    background-color: #3289C8;
-}
 .card-footer .btn {
     margin-left: 2px;
     margin-right: 2px;
-}
-.btn-schedule:hover {
-    background-color: #266999;
 }

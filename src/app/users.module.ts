@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { NewUserComponent } from "./new-user.component";
 import { UserComponent } from "./user.component";
 import { UsersComponent } from "./users.component";
 
@@ -7,7 +8,8 @@ import { UsersComponent } from "./users.component";
     imports: [CommonModule],
     declarations: [
         UsersComponent,
-        UserComponent
+        UserComponent,
+        NewUserComponent
     ],
     exports: [UsersComponent]
 })

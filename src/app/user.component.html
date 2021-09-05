@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card card-custom mb-4">
     <form>
         <div class="card-header text-center">
             <h6 [hidden]="isEditing" class="my-2"><i class="fa fa-user"></i> {{item.name}}</h6>
@@ -8,7 +8,7 @@
             <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200"/></p>
             <p [hidden]="isEditing">{{item.title}}</p>
             <input [hidden]="!isEditing" type="text" class="form-control mt-2 mb-3" [value]="item.title"/>
-            <p class="mb-2"><button class="btn btn-sm btn-schedule"><i class="fa fa-calendar-check-o"></i> Schedules</button></p>
+            <p class="mb-2"><button class="btn btn-sm btn-custom"><i class="fa fa-calendar-check-o"></i> Schedules</button></p>
         </div>
         <div class="card-footer text-center">
             <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-secondary" (click)="onCancel()"><i class="fa fa-ban"></i> Cancel</button>

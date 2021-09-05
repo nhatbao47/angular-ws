@@ -1,4 +1,11 @@
+<div class="button-group">
+    <button [hidden]="newUserVisible" type="button" class="btn btn-sm btn-custom" (click)="onDisplayNewUser()"><i class="fa fa-user-plus"></i> Add</button>
+    <button [hidden]="!newUserVisible" type="button" class="btn btn-sm btn-danger" (click)="onCancel()"><i class="fa fa-ban"></i> Cancel</button>
+</div>
 <div class="row">
+    <div [hidden]="!newUserVisible" class="col-md-3">
+        <new-user (createUserEvent)="onCreateNewUser($event)"></new-user>
+    </div>
     <div *ngFor="let u of users" class="col-md-3">
         <user [item]="u"></user>
     </div>

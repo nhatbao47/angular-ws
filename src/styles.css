@@ -14,3 +14,19 @@
     float: right;
     margin-top: 2px;
 }
+.btn-custom {
+    color: #fff;
+    background-color: #3289C8;
+}
+.btn-custom:hover {
+    color: #fff;
+    background-color: #266999;
+}
+.card-custom {
+    border-color: #3289C8;
+}
+.card-custom .card-header {
+    height: 55px;
+    color: #fff;
+    background-color: #3289C8;
+}
