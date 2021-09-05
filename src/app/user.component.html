@@ -1,15 +1,20 @@
 <div class="card mb-4">
-    <div class="card-header text-center">
-        <i class="fa fa-user"></i><span class="px-1">User 1</span>
-    </div>
-    <div class="card-body text-center">
-        <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200"/></p>
-        <p>Developer</p>
-        <p class="mb-2"><button class="btn btn-sm btn-schedule"><i class="fa fa-calendar-check-o"></i> Schedules</button></p>
-    </div>
-    <div class="card-footer text-center">
-        <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-pencil"></i> Edit</button>
-        <span>&nbsp;</span>
-        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Remove</button>
-    </div>
+    <form>
+        <div class="card-header text-center">
+            <h6 [hidden]="isEditing" class="my-2"><i class="fa fa-user"></i> {{item.name}}</h6>
+            <input [hidden]="!isEditing" type="text" class="form-control" [value]="item.name"/>
+        </div>
+        <div class="card-body text-center">
+            <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200"/></p>
+            <p [hidden]="isEditing">{{item.title}}</p>
+            <input [hidden]="!isEditing" type="text" class="form-control mt-2 mb-3" [value]="item.title"/>
+            <p class="mb-2"><button class="btn btn-sm btn-schedule"><i class="fa fa-calendar-check-o"></i> Schedules</button></p>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-secondary" (click)="onCancel()"><i class="fa fa-ban"></i> Cancel</button>
+            <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-success"><i class="fa fa-save"></i> Update</button>
+            <button type="button" [hidden]="isEditing" class="btn btn-sm btn-outline-secondary" (click)="onEdit()"><i class="fa fa-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Remove</button>
+        </div>
+    </form>
 </div>

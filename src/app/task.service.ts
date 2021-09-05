@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppConfig, APP_CONFIG } from './app.config';
 import { Task, TaskState } from "./task";
 
 @Injectable({
@@ -8,14 +9,14 @@ import { Task, TaskState } from "./task";
 })
 
 export class TaskService {
-    items: Task[] = [];
+    private appConfig!: AppConfig;
 
-    constructor(
-        private client: HttpClient
-    ) { }
+    constructor(private client: HttpClient, @Inject(APP_CONFIG) config: AppConfig) {
+        this.appConfig = config;
+    }
     
     getTasks(): Observable<Task[]>{
-        return this.client.get<Task[]>('/assets/task.json');
+        return this.client.get<Task[]>(this.appConfig.taskEndpoint);
     }
 
     filterTasksByState(tasks: Task[], state: TaskState): Task[] {
