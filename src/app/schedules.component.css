@@ -1,0 +1,8 @@
+.table {
+    border-left: solid 1px #dfe4e8;
+    border-top: solid 1px #dfe4e8;
+    border-right: solid 1px #dfe4e8;
+}
+.btn {
+    margin: 0 4px 0 4px;
+}

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DashBoardModule } from './dashboard.module';
 import { UsersModule } from './users.module';
 import { ANGULAR_WS_CONFIG, APP_CONFIG } from './app.config';
+import { SchedulesModule } from './schedules.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ANGULAR_WS_CONFIG, APP_CONFIG } from './app.config';
     AppRoutingModule,
     HttpClientModule,
     DashBoardModule,
-    UsersModule
+    UsersModule,
+    SchedulesModule
   ],
   providers: [
     { provide: APP_CONFIG, useValue: ANGULAR_WS_CONFIG}
