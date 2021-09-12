@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { Task } from "./task";
+import { Task } from "./task.model";
 import { TaskPreviewComponent } from "./task-preview.component";
 
 @Component({

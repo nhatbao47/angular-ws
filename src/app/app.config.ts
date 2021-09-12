@@ -8,7 +8,7 @@ export interface AppConfig {
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 export const ANGULAR_WS_CONFIG: AppConfig = {
-    taskEndpoint: '/assets/task.json',
+    taskEndpoint: 'api/tasks/',
     userEndpoint: '/assets/user.json',
     scheduleEndpoint: '/assets/schedule.json'
 }

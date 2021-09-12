@@ -8,6 +8,8 @@ import { DashBoardModule } from './dashboard.module';
 import { UsersModule } from './users.module';
 import { ANGULAR_WS_CONFIG, APP_CONFIG } from './app.config';
 import { SchedulesModule } from './schedules.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SchedulesModule } from './schedules.module';
     HttpClientModule,
     DashBoardModule,
     UsersModule,
-    SchedulesModule
+    SchedulesModule,
+    HttpClientInMemoryWebApiModule.forRoot(DataService)
   ],
   providers: [
     { provide: APP_CONFIG, useValue: ANGULAR_WS_CONFIG}

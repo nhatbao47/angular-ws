@@ -15,3 +15,21 @@
     border-right: solid 1px #dee2e6;
     border-bottom: solid 1px #dee2e6;
 }
+h6 {
+    margin-top: 6px;
+    padding: 3px 6px;
+    background-color: #d1d4d6;
+    border-radius: 3px;
+}
+input[type='text'], textarea {
+    border-left-width: 3px;
+}
+input[type='text'].ng-pristine, textarea.ng-pristine {
+    border-left-color: #BB2D3B;
+}
+input[type='text'].ng-touched.ng-invalid, textarea.ng-touched.ng-invalid {
+    border-color: #BB2D3B;
+}
+input[type='text'].ng-touched.ng-valid, textarea.ng-touched.ng-valid {
+    border-color:green;
+}

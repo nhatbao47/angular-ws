@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { startWith, filter, takeUntil } from 'rxjs/operators';
 import { Subject } from "rxjs";
-import { Task, TaskState } from "./task";
+import { Task, TaskState } from "./task.model";
 import { TaskService } from "./task.service";
 
 @Component({
