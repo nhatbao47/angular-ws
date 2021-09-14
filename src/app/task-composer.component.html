@@ -3,61 +3,65 @@
         <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-arrow-circle-o-left"></i> Back</button>
     </p>
 </div>
-<nav>
-    <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-composer-tab" data-toggle="tab" href="#nav-composer">{{addNew ? 'Add' : 'Edit'}}</a>
-        <a class="nav-item nav-link" id="nav-preview-tab" data-toggle="tab" href="#nav-preview"
-            [hidden]="addNew">Preview</a>
-    </div>
-    <div class="tab-content bg-light" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-composer" role="tabpanel">
-            <div class="px-2 py-2">
-                <form #taskForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-                    <div class="form-group">
-                        <label for="title" class="form-label fw-bold">Title</label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            placeholder="Insert the title..." required maxlength="200" #title="ngModel"
-                            [(ngModel)]="task.title" />
-                        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
-                            <div *ngIf="title.errors?.required">
-                                Title is required
-                            </div>
+<ul class="nav nav-tabs justify-content-end" role="tablist">
+    <li class="nav-item" role="presentation" [hidden]="addNew">
+        <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview" type="button" role="tab" aria-controls="preview" aria-selected="false">View</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="composer-tab" data-bs-toggle="tab" data-bs-target="#composer" type="button" role="tab" aria-controls="composer" aria-selected="true">{{addNew ? 'Add' : 'Edit'}}</button>
+    </li>
+</ul>
+<div class="tab-content bg-light">
+    <div class="tab-pane fade show active" id="composer" role="tabpanel" aria-labelledby="composer-tab">
+        <div class="px-2 py-2">
+            <form #taskForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="form-group">
+                    <label for="title" class="form-label fw-bold">Title</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="Insert the title..." required maxlength="200" #title="ngModel"
+                        [(ngModel)]="task.title" />
+                    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
+                        <div *ngIf="title.errors?.required">
+                            Title is required
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="description" class="form-label fw-bold">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"
-                            placeholder="Insert suitable description..." required maxlength="1000"
-                            #description="ngModel" [(ngModel)]="task.description"></textarea>
-                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
-                            <div *ngIf="description.errors?.required">
-                                Description is required
-                            </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="form-label fw-bold">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"
+                        placeholder="Insert suitable description..." required maxlength="1000"
+                        #description="ngModel" [(ngModel)]="task.description"></textarea>
+                    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+                        <div *ngIf="description.errors?.required">
+                            Description is required
                         </div>
                     </div>
-                    <div class="form-group">
-                        <h6 class="fw-bold">Status</h6>
-                        <div>
-                            <div *ngFor="let radio of statusRadios;let i = index" class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="rdoStatus{{i}}" [(ngModel)]="task.state" [value]="radio.value" />
-                                <label for="rdoStatus{{i}}">{{radio.label}}</label>
-                            </div>
+                </div>
+                <div class="form-group">
+                    <h6 class="fw-bold">Status</h6>
+                    <div>
+                        <div *ngFor="let radio of statusRadios;let i = index" class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="rdoStatus{{i}}" [(ngModel)]="task.state" [value]="radio.value" />
+                            <label for="rdoStatus{{i}}">{{radio.label}}</label>
                         </div>
                     </div>
-                    <div class="form-group mt-2">
-                        <p class="spacer">&nbsp;</p>
-                        <button type="button" class="btn btn-sm btn-outline-secondary btn-right" (click)="onReset(taskForm)">
-                            <i class="fa fa-ban"></i> Cancel</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger btn-right" [hidden]="addNew">
-                            <i class="fa fa-trash"></i> Delete</button>
-                        <button type="submit" class="btn btn-sm btn-primary btn-right" [disabled]="!taskForm.valid">
-                            <i class="fa fa-save"></i> {{addNew ? 'Save' : 'Update'}}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-preview" role="tabpanel">
-            Preview
+                </div>
+                <div class="form-group mt-2">
+                    <p class="spacer">&nbsp;</p>
+                    <button type="button" class="btn btn-sm btn-outline-secondary btn-right" (click)="onReset(taskForm)">
+                        <i class="fa fa-ban"></i> Cancel</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger btn-right" [hidden]="addNew">
+                        <i class="fa fa-trash"></i> Delete</button>
+                    <button type="submit" class="btn btn-sm btn-primary btn-right" [disabled]="!taskForm.valid">
+                        <i class="fa fa-save"></i> {{addNew ? 'Save' : 'Update'}}</button>
+                </div>
+            </form>
         </div>
     </div>
-</nav>
+    <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="composer-tab">
+        <div class="px-2 py-2">
+            <h2>{{task.title}}</h2>
+            <p>{{task.description}}</p>
+        </div>
+    </div>
+</div>
