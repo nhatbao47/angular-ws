@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { filter, startWith, takeUntil } from "rxjs/operators";
-import { User } from "./user";
+import { User } from "./user.model";
 import { UserService } from "./user.service";
 
 @Component({

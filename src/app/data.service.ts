@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Task, TaskState } from './task.model';
+import { User } from "./user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -46,8 +47,26 @@ export class DataService implements InMemoryDbService {
                 state: TaskState.Done
             }
         ];
+        const users: User[] = [
+            {
+                id: 1,
+                name: 'David',
+                title: 'Developer'
+            },
+            {
+                id: 2,
+                name: 'Lee',
+                title: 'PM'
+            },
+            {
+                id: 3,
+                name: 'Tim',
+                title: 'QC'
+            }
+        ];
         return {
-            tasks: tasks
+            tasks: tasks,
+            users: users
         };
     }
 }
