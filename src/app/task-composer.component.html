@@ -1,9 +1,9 @@
 <div class="row">
     <p>
-        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-arrow-circle-o-left"></i> Back</button>
+        <button type="button" class="btn btn-sm btn-danger" (click)="onBackToDashboard()"><i class="fa fa-arrow-circle-o-left"></i> Back</button>
     </p>
 </div>
-<ul class="nav nav-tabs justify-content-end" role="tablist">
+<ul class="nav nav-tabs justify-content-end" role="tablist" *ngIf="task">
     <li class="nav-item" role="presentation" [hidden]="addNew">
         <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview" type="button" role="tab" aria-controls="preview" aria-selected="false">View</button>
     </li>
@@ -11,7 +11,7 @@
         <button class="nav-link active" id="composer-tab" data-bs-toggle="tab" data-bs-target="#composer" type="button" role="tab" aria-controls="composer" aria-selected="true">{{addNew ? 'Add' : 'Edit'}}</button>
     </li>
 </ul>
-<div class="tab-content bg-light">
+<div class="tab-content bg-light" *ngIf="task">
     <div class="tab-pane fade show active" id="composer" role="tabpanel" aria-labelledby="composer-tab">
         <div class="px-2 py-2">
             <form #taskForm="ngForm" (ngSubmit)="onSubmit()" novalidate>

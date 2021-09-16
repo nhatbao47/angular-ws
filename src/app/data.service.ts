@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Schedule } from "./schedule.model";
 import { Task, TaskState } from './task.model';
 import { User } from "./user.model";
 
@@ -64,9 +65,39 @@ export class DataService implements InMemoryDbService {
                 title: 'QC'
             }
         ];
+        const schedules: Schedule[] = [
+            {
+                id: 1,
+                title: "Meeting 1",
+                creator: "David",
+                description: "Stand up",
+                location: "Osaka",
+                startDate: new Date("2021-09-01T09:00:00"),
+                endDate: new Date("2021-09-01T11:00:00")
+            },
+            {
+                id: 2,
+                title: "Meeting 2",
+                creator: "Tom",
+                description: "Stand up",
+                location: "London",
+                startDate: new Date("2021-09-02T09:00:00"),
+                endDate: new Date("2021-09-02T11:00:00")
+            },
+            {
+                id: 3,
+                title: "Meeting 3",
+                creator: "Tim Cook",
+                description: "Stand up",
+                location: "New York",
+                startDate: new Date("2021-09-03T09:00:00"),
+                endDate: new Date("2021-09-03T11:00:00")
+            }
+        ];
         return {
             tasks: tasks,
-            users: users
+            users: users,
+            schedules: schedules
         };
     }
 }

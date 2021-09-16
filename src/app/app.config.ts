@@ -10,5 +10,5 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 export const ANGULAR_WS_CONFIG: AppConfig = {
     taskEndpoint: 'api/tasks/',
     userEndpoint: 'api/users/',
-    scheduleEndpoint: '/assets/schedule.json'
+    scheduleEndpoint: 'api/schedules/'
 }

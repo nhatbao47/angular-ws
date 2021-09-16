@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { Task, TaskState } from "./task.model";
@@ -12,7 +13,6 @@ import { TaskService } from "./task.service";
 })
 
 export class TaskComposerComponent implements OnInit, OnDestroy {
-    constructor (private taskService: TaskService) { }
     addNew: boolean = true;
     task!: Task;
     statusRadios: RadioValue[] = [
@@ -32,41 +32,61 @@ export class TaskComposerComponent implements OnInit, OnDestroy {
 
     private ngUnsubscribe = new Subject();
 
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+        private taskService: TaskService
+    ) { }
+
     ngOnInit() {
-        if (this.addNew) {
-            this.task = {
-                id: 0,
-                title: '',
-                description: '',
-                state: TaskState.New
-            };
-        }
-    }
+        this.activatedRoute.paramMap.subscribe(params => {
+            const id = params.get('id') ?? 0;
+            if (id == 0) {
+                this.task = {
+                    id: 0,
+                    title: '',
+                    description: '',
+                    state: TaskState.New
+                };
+                return;
+            }
 
-    ngOnDestroy() {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
+            this.taskService.getTask(+id)
+                .pipe(takeUntil(this.ngUnsubscribe))
+                .subscribe(task => {
+                    this.task = task;
+                    this.addNew = false;
+                });
+        });
     }
-
-    private getProducts() {
-        this.taskService.getTasks().subscribe(tasks => console.log(tasks));
-      }
 
     onSubmit() {
         if (this.addNew) {
             this.taskService.createTask(this.task)
                 .pipe(takeUntil(this.ngUnsubscribe))
                 .subscribe((task: Task) => {
-                    console.log(task);
-                    this.getProducts();
+                    this.onBackToDashboard();
                 });
         } else {
-
+            this.taskService.editTask(this.task)
+                .pipe(takeUntil(this.ngUnsubscribe))
+                .subscribe((task: Task) => {
+                    this.onBackToDashboard();
+                });
         }
     }
 
     onReset(taskForm: NgForm) {
         taskForm.resetForm();
+    }
+
+    onBackToDashboard() {
+        this.router.navigate(['dashboard']);
+    }
+
+    ngOnDestroy() {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
     }
 }
 

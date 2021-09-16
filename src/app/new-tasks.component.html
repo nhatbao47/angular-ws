@@ -5,10 +5,10 @@
     <div class="card-body py-0">
         <ul class="list-group list-group-flush">
             <li *ngFor="let task of tasks" class="list-group-item px-0">
-                <a href="#">{{task.title}}</a>
+                <a routerLink="/task/{{task.id}}">{{task.title}}</a>
             </li>
             <li class="list-group-item px-0">
-                <button class="btn btn-primary"><i class="fa fa-tasks"></i> Add</button>
+                <button class="btn btn-sm btn-primary" routerLink="/task/0"><i class="fa fa-tasks"></i> Add</button>
             </li>
         </ul>
     </div>

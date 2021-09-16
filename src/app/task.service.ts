@@ -30,6 +30,16 @@ export class TaskService {
         return tasks.filter(task => task.state === state);
     }
 
+    getTask(id: number): Observable<Task>{
+        return this.client.get<Task>(this.taskEndpoint + id).pipe(
+            retry(2),
+            catchError((error: HttpErrorResponse) => {
+                console.log(error);
+                return throwError(error);
+            })
+        );
+    }
+
     createTask(task: Task): Observable<Task> {
         task.id = 0;
         return this.client.post<Task>(this.taskEndpoint, task).pipe(

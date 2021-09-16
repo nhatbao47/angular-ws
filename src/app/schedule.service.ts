@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { AppConfig, APP_CONFIG } from "./app.config";
-import { Schedule } from "./schedule";
+import { Schedule } from "./schedule.model";
 
 @Injectable({
     providedIn: 'root'

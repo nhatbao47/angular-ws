@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { filter, startWith, takeUntil } from "rxjs/operators";
-import { Schedule } from "./schedule";
+import { Schedule } from "./schedule.model";
 import { ScheduleService } from "./schedule.service";
 
 @Component({
