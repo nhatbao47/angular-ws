@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { SchedulesComponent } from './schedules.component';
-import { TaskComposerComponent } from './task-composer.component';
+import { TaskComposerComponent } from './dashboard/task-composer.component';
 import { UsersComponent } from './users.component';
 
 const routes: Routes = [

@@ -4,12 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashBoardModule } from './dashboard.module';
+import { DashBoardModule } from './dashboard/dashboard.module';
 import { UsersModule } from './users.module';
 import { ANGULAR_WS_CONFIG, APP_CONFIG } from './app.config';
 import { SchedulesModule } from './schedules.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DataService } from './data.service';
     DashBoardModule,
     UsersModule,
     SchedulesModule,
-    HttpClientInMemoryWebApiModule.forRoot(DataService)
+    HttpClientInMemoryWebApiModule.forRoot(DataService),
+    NgbModule
   ],
   providers: [
     { provide: APP_CONFIG, useValue: ANGULAR_WS_CONFIG}

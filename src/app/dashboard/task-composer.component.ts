@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { ConfirmationDialogService } from "../dialog/confirmation-dialog.service";
 import { Task, TaskState } from "./task.model";
 import { TaskService } from "./task.service";
 
@@ -35,7 +36,8 @@ export class TaskComposerComponent implements OnInit, OnDestroy {
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private taskService: TaskService
+        private taskService: TaskService,
+        private dialogService: ConfirmationDialogService
     ) { }
 
     ngOnInit() {
@@ -82,6 +84,19 @@ export class TaskComposerComponent implements OnInit, OnDestroy {
 
     onBackToDashboard() {
         this.router.navigate(['dashboard']);
+    }
+
+    onDelete() {
+        this.dialogService.confirm('Confirmation', 'Are you sure to delete this task?')
+            .then((confirmed) => {
+                if (confirmed) {
+                    this.taskService.deleteTask(this.task.id)
+                        .pipe(takeUntil(this.ngUnsubscribe))
+                        .subscribe(() => {
+                            this.onBackToDashboard();
+                    });
+                }
+            });
     }
 
     ngOnDestroy() {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Schedule } from "./schedule.model";
-import { Task, TaskState } from './task.model';
+import { Task, TaskState } from './dashboard/task.model';
 import { User } from "./user.model";
 
 @Injectable({
@@ -9,6 +9,25 @@ import { User } from "./user.model";
 })
 
 export class DataService implements InMemoryDbService {
+    private maxIds: number[] = [6, 3, 3];
+
+    getMaxId(table: string): number {
+        let index: number = 0;
+        switch (table) {
+            case 'task':
+                index = 0;
+                break;
+            case 'user':
+                index = 1;
+                break;
+            case 'schedule':
+                index = 2;
+                break;
+        }
+        this.maxIds[index]++;
+        return this.maxIds[index];
+    }
+
     createDb() {
         const tasks: Task[] = [
             {

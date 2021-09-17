@@ -2,7 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { AppConfig, APP_CONFIG } from './app.config';
+import { AppConfig, APP_CONFIG } from '../app.config';
+import { DataService } from '../data.service';
 import { Task, TaskState } from "./task.model";
 
 @Injectable({
@@ -12,7 +13,11 @@ import { Task, TaskState } from "./task.model";
 export class TaskService {
     private taskEndpoint: string = '';
 
-    constructor(private client: HttpClient, @Inject(APP_CONFIG) config: AppConfig) {
+    constructor(
+        private client: HttpClient,
+        private dataService: DataService,
+        @Inject(APP_CONFIG) config: AppConfig
+    ) {
         this.taskEndpoint = config.taskEndpoint;
     }
     
@@ -41,7 +46,7 @@ export class TaskService {
     }
 
     createTask(task: Task): Observable<Task> {
-        task.id = 0;
+        task.id = this.dataService.getMaxId('task');
         return this.client.post<Task>(this.taskEndpoint, task).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.log(error);

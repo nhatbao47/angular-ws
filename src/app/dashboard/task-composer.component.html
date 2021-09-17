@@ -50,7 +50,7 @@
                     <p class="spacer">&nbsp;</p>
                     <button type="button" class="btn btn-sm btn-outline-secondary btn-right" (click)="onReset(taskForm)">
                         <i class="fa fa-ban"></i> Cancel</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger btn-right" [hidden]="addNew">
+                    <button type="button" class="btn btn-sm btn-outline-danger btn-right" [hidden]="addNew" (click)="onDelete()">
                         <i class="fa fa-trash"></i> Delete</button>
                     <button type="submit" class="btn btn-sm btn-primary btn-right" [disabled]="!taskForm.valid">
                         <i class="fa fa-save"></i> {{addNew ? 'Save' : 'Update'}}</button>
