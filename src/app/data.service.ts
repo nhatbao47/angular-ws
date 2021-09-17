@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Schedule } from "./schedule.model";
+import { Schedule } from "./schedules/schedule.model";
 import { Task, TaskState } from './dashboard/task.model';
-import { User } from "./user.model";
+import { User } from "./users/user.model";
 
 @Injectable({
     providedIn: 'root'
