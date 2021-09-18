@@ -8,13 +8,17 @@ import { Schedule } from "./schedule.model";
 })
 
 export class ScheduleService {
-    private appConfig!: AppConfig;
+    private scheduleEndpoint = '';
 
     constructor(private client: HttpClient, @Inject(APP_CONFIG) config: AppConfig) {
-        this.appConfig = config;
+        this.scheduleEndpoint = config.scheduleEndpoint;
     }
 
     getSchedules() {
-        return this.client.get<Schedule[]>(this.appConfig.scheduleEndpoint);
+        return this.client.get<Schedule[]>(this.scheduleEndpoint);
+    }
+
+    getSchedule(id: number) {
+        return this.client.get<Schedule>(this.scheduleEndpoint + id);
     }
 }

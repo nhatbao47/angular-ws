@@ -91,7 +91,8 @@ export class DataService implements InMemoryDbService {
             {
                 id: 1,
                 title: "Meeting 1",
-                creator: "David",
+                userId: 1,
+                creator: this.getUserName(1, users),
                 description: "Stand up",
                 location: "Osaka",
                 startDate: new Date("2021-09-01T09:00:00"),
@@ -100,7 +101,8 @@ export class DataService implements InMemoryDbService {
             {
                 id: 2,
                 title: "Meeting 2",
-                creator: "Tom",
+                userId: 2,
+                creator: this.getUserName(2, users),
                 description: "Stand up",
                 location: "London",
                 startDate: new Date("2021-09-02T09:00:00"),
@@ -109,7 +111,8 @@ export class DataService implements InMemoryDbService {
             {
                 id: 3,
                 title: "Meeting 3",
-                creator: "Tim Cook",
+                userId: 3,
+                creator: this.getUserName(3, users),
                 description: "Stand up",
                 location: "New York",
                 startDate: new Date("2021-09-03T09:00:00"),
@@ -121,5 +124,10 @@ export class DataService implements InMemoryDbService {
             users: users,
             schedules: schedules
         };
+    }
+
+    private getUserName(id: number, users: User[]): string {
+        let filterUsers = users.filter(user => user.id === id);
+        return filterUsers.length > 0 ? filterUsers[0].name : '';
     }
 }

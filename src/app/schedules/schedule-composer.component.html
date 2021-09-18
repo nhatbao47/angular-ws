@@ -1,0 +1,85 @@
+<div class="card bg-light">
+    <div class="card-header fw-bold">Schedule Composer</div>
+    <div class="card-body">
+        <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Title</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="title" name="title" maxlength="200"
+                        formControlName="title" [ngClass]="{'is-invalid':form.title.touched && form.title.invalid}">
+                    <div *ngIf="form.title.invalid && (form.title.dirty || form.title.touched)" class="text-danger">
+                        <div *ngIf="form.title.errors?.required">
+                            Title is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Creator</label>
+                <div class="col-md-4">
+                    <select class="form-select" id="userId" name="userId" formControlName="userId"
+                        [ngClass]="{'is-invalid':form.userId.touched && form.userId.invalid}">
+                        <option *ngFor="let opt of creators" [value]="opt.id">{{opt.name}}</option>
+                    </select>
+                    <div *ngIf="form.userId.invalid && (form.title.dirty || form.userId.touched)" class="text-danger">
+                        <div *ngIf="form.userId.errors?.required">
+                            Creator is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Description</label>
+                <div class="col-md-10">
+                    <textarea class="form-control" id="description" name="description" rows="3"
+                        formControlName="description"
+                        [ngClass]="{'is-invalid':form.description.touched && form.description.invalid}"></textarea>
+                    <div *ngIf="form.description.invalid && (form.description.dirty || form.description.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.description.errors?.required">
+                            Description is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Location</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="location" name="location" maxlength="100"
+                        formControlName="location"
+                        [ngClass]="{'is-invalid':form.location.touched && form.location.invalid}">
+                    <div *ngIf="form.location.invalid && (form.location.dirty || form.location.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.location.errors?.required">
+                            Location is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Date</label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="dd/mm/yyyy" formControlName="startDate" ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-sm btn-primary" [disabled]="!scheduleForm.valid">
+                        <i class="fa fa-save"></i> Save</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger">
+                        <i class="fa fa-trash"></i> Delete</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onCancel()">
+                        <i class="fa fa-ban"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
