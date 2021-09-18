@@ -2,19 +2,32 @@
     <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="card-header text-center">
             <h6 [hidden]="isEditing" class="my-2"><i class="fa fa-user"></i> {{item.name}}</h6>
-            <input [hidden]="!isEditing" type="text" class="form-control" id="name" name="name" [(ngModel)]="item.name" #name="ngModel"/>
+            <input [hidden]="!isEditing" type="text" class="form-control" id="name" name="name" maxlength="200" required
+                [(ngModel)]="item.name" #name="ngModel" />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                <div *ngIf="name.errors?.required">You need to enter name</div>
+            </div>
         </div>
         <div class="card-body text-center">
-            <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200"/></p>
+            <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200" /></p>
             <p [hidden]="isEditing">{{item.title}}</p>
-            <input [hidden]="!isEditing" type="text" class="form-control mt-2 mb-3" id="title" name="title" [(ngModel)]="item.title" #title="ngModel"/>
-            <p class="mb-2"><button class="btn btn-sm btn-custom"><i class="fa fa-calendar-check-o"></i> Schedules</button></p>
+            <input [hidden]="!isEditing" type="text" class="form-control mt-2" id="title" name="title"
+                maxlength="100" required [(ngModel)]="item.title" #title="ngModel" />
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
+                <div *ngIf="title.errors?.required">You need to enter title</div>
+            </div>
+            <p class="mt-3 mb-2"><button class="btn btn-sm btn-custom"><i class="fa fa-calendar-check-o"></i>
+                    Schedules</button></p>
         </div>
         <div class="card-footer text-center">
-            <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-secondary" (click)="onCancel()"><i class="fa fa-ban"></i> Cancel</button>
-            <button type="submit" [hidden]="!isEditing" class="btn btn-sm btn-outline-success"><i class="fa fa-save"></i> Update</button>
-            <button type="button" [hidden]="isEditing" class="btn btn-sm btn-outline-secondary" (click)="onEdit()"><i class="fa fa-pencil"></i> Edit</button>
-            <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Remove</button>
+            <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-secondary" (click)="onCancel()"><i
+                    class="fa fa-ban"></i> Cancel</button>
+            <button type="submit" [hidden]="!isEditing" [disabled]="!userForm.valid" class="btn btn-sm btn-outline-success"><i
+                    class="fa fa-save"></i> Update</button>
+            <button type="button" [hidden]="isEditing" class="btn btn-sm btn-outline-secondary" (click)="onEdit()"><i
+                    class="fa fa-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="onDelete()"><i class="fa fa-times"></i>
+                Remove</button>
         </div>
     </form>
 </div>

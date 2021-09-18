@@ -71,17 +71,20 @@ export class DataService implements InMemoryDbService {
             {
                 id: 1,
                 name: 'David',
-                title: 'Developer'
+                title: 'Developer',
+                isDeleted: false
             },
             {
                 id: 2,
                 name: 'Lee',
-                title: 'PM'
+                title: 'PM',
+                isDeleted: false
             },
             {
                 id: 3,
                 name: 'Tim',
-                title: 'QC'
+                title: 'QC',
+                isDeleted: false
             }
         ];
         const schedules: Schedule[] = [

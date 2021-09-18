@@ -3,6 +3,7 @@ import { Inject, Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { AppConfig, APP_CONFIG } from "../app.config";
+import { DataService } from "../data.service";
 import { User } from "./user.model";
 
 @Injectable({
@@ -12,7 +13,11 @@ import { User } from "./user.model";
 export class UserService {
     private userEndpoint = '';
 
-    constructor(private client: HttpClient, @Inject(APP_CONFIG) config: AppConfig) {
+    constructor(
+        private client: HttpClient,
+        private dataService: DataService,
+        @Inject(APP_CONFIG) config: AppConfig
+    ) {
         this.userEndpoint = config.userEndpoint;
     }
     
@@ -27,6 +32,7 @@ export class UserService {
     }
 
     createUser(user: User): Observable<User> {
+        user.id = this.dataService.getMaxId('user');
         return this.client.post<User>(this.userEndpoint, user).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.log(error);

@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { User } from "./user.model";
 
 @Component({
     selector: 'new-user',
@@ -7,9 +8,10 @@ import { Component, Output, EventEmitter } from "@angular/core";
 })
 
 export class NewUserComponent {
-    @Output() createUserEvent = new EventEmitter<string>();
+    @Input() item!: User;
+    @Output() createUserEvent = new EventEmitter<User>();
 
     onCreate() {
-        this.createUserEvent.emit('create');
+        this.createUserEvent.emit(this.item);
     }
 }

@@ -4,9 +4,9 @@
 </div>
 <div class="row">
     <div [hidden]="!newUserVisible" class="col-md-3">
-        <new-user (createUserEvent)="onCreateNewUser($event)"></new-user>
+        <new-user *ngIf="newUser" [item]="newUser" (createUserEvent)="onCreateNewUser($event)"></new-user>
     </div>
-    <div *ngFor="let u of users" class="col-md-3">
-        <user [item]="u"></user>
+    <div *ngFor="let user of users; trackBy: identify" class="col-md-3" [hidden]="user.isDeleted">
+        <user [item]="user"></user>
     </div>
 </div>

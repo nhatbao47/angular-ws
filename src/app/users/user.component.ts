@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { ConfirmationDialogService } from "../dialog/confirmation-dialog.service";
 import { User } from "./user.model";
 import { UserService } from "./user.service";
 
@@ -12,7 +12,10 @@ import { UserService } from "./user.service";
 })
 
 export class UserComponent implements OnInit, OnDestroy {
-    constructor(private userService: UserService) { }
+    constructor(
+        private userService: UserService,
+        private dialogService: ConfirmationDialogService
+    ) { }
 
     @Input() item!: User;
     isEditing: boolean = false;
@@ -42,6 +45,20 @@ export class UserComponent implements OnInit, OnDestroy {
         this.item.name = this.originalUser.name;
         this.item.title = this.originalUser.title;
         this.isEditing = false;
+    }
+
+    onDelete() {
+        this.dialogService.confirm('Confirmation', `Are you sure to delete '${this.item.name}' user?`)
+            .then(confirmed => {
+                if (confirmed) {
+                    this.userService.deleteUser(this.item.id)
+                        .pipe(takeUntil(this.ngUnsubscribe))
+                        .subscribe(() => {
+                            this.item.isDeleted = true;
+                        })
+                }
+            });
+
     }
 
     cloneUser(user: User) {
