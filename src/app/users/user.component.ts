@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { ConfirmationDialogService } from "../dialog/confirmation-dialog.service";
+import { ConfirmationDialogService } from "../common/confirmation-dialog.service";
 import { User } from "./user.model";
 import { UserService } from "./user.service";
 

@@ -1,5 +1,8 @@
 <div class="button-group mb-2">
-    <button type="button" class="btn btn-sm btn-custom" (click)="onAddNewSchedule()"><i class="fa fa-calendar-o"></i> Add</button>
+    <button type="button" class="btn btn-sm btn-custom" (click)="onAddNewSchedule()"><i class="fa fa-calendar-o"></i>
+        Add</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" [hidden]="!userFilter" (click)="onClearFilter()"><i
+            class="fa fa-eraser"></i> Clear filter</button>
 </div>
 <table class="table table-striped">
     <thead>
@@ -19,12 +22,15 @@
             <td>{{schedule.creator}}</td>
             <td>{{schedule.description}}</td>
             <td>{{schedule.location}}</td>
-            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.startTime.hour}}:{{schedule.startTime.minute}}</td>
-            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.endTime.hour}}:{{schedule.endTime.minute}}</td>
+            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.startTime | shortTime}}</td>
+            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.endTime | shortTime}}</td>
             <td>
-                <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-info-circle"></i> Details</button>
-                <button type="button" class="btn btn-sm btn-primary" [routerLink]="['/schedule', schedule.id]"><i class="fa fa-pencil"></i> Edit</button>
-                <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(schedule)"><i class="fa fa-trash"></i> Delete</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                    [routerLink]="['/schedule-detail', schedule.id]"><i class="fa fa-info-circle"></i> Details</button>
+                <button type="button" class="btn btn-sm btn-primary" [routerLink]="['/schedule', schedule.id]"><i
+                        class="fa fa-pencil"></i> Edit</button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(schedule)"><i
+                        class="fa fa-trash"></i> Delete</button>
             </td>
         </tr>
     </tbody>

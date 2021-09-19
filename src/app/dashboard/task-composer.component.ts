@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { ConfirmationDialogService } from "../dialog/confirmation-dialog.service";
+import { ConfirmationDialogService } from "../common/confirmation-dialog.service";
 import { Task, TaskState } from "./task.model";
 import { TaskService } from "./task.service";
 

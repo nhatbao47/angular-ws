@@ -11,19 +11,20 @@
         <div class="card-body text-center">
             <p class="my-0"><img src="/assets/img/user-icon.jpg" width="200" /></p>
             <p [hidden]="isEditing">{{item.title}}</p>
-            <input [hidden]="!isEditing" type="text" class="form-control mt-2" id="title" name="title"
-                maxlength="100" required [(ngModel)]="item.title" #title="ngModel" />
+            <input [hidden]="!isEditing" type="text" class="form-control mt-2" id="title" name="title" maxlength="100"
+                required [(ngModel)]="item.title" #title="ngModel" />
             <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
                 <div *ngIf="title.errors?.required">You need to enter title</div>
             </div>
-            <p class="mt-3 mb-2"><button class="btn btn-sm btn-custom"><i class="fa fa-calendar-check-o"></i>
+            <p class="mt-3 mb-2"><button class="btn btn-sm btn-custom" [routerLink]="['/schedules']"
+                    [queryParams]="{userId: item.id}"><i class="fa fa-calendar-check-o"></i>
                     Schedules</button></p>
         </div>
         <div class="card-footer text-center">
             <button type="button" [hidden]="!isEditing" class="btn btn-sm btn-outline-secondary" (click)="onCancel()"><i
                     class="fa fa-ban"></i> Cancel</button>
-            <button type="submit" [hidden]="!isEditing" [disabled]="!userForm.valid" class="btn btn-sm btn-outline-success"><i
-                    class="fa fa-save"></i> Update</button>
+            <button type="submit" [hidden]="!isEditing" [disabled]="!userForm.valid"
+                class="btn btn-sm btn-outline-success"><i class="fa fa-save"></i> Update</button>
             <button type="button" [hidden]="isEditing" class="btn btn-sm btn-outline-secondary" (click)="onEdit()"><i
                     class="fa fa-pencil"></i> Edit</button>
             <button type="button" class="btn btn-sm btn-danger" (click)="onDelete()"><i class="fa fa-times"></i>

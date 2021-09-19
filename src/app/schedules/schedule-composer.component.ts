@@ -86,10 +86,6 @@ export class ScheduleComposerComponent implements OnInit, OnDestroy {
         action.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.backToSchedules());
     }
 
-    onCancel() {
-        this.backToSchedules();
-    }
-
     ngOnDestroy() {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();
