@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
-import { filter, startWith, takeUntil } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 import { User } from "./user.model";
 import { UserService } from "./user.service";
 
@@ -10,22 +11,14 @@ import { UserService } from "./user.service";
     styleUrls: ['./users.component.css']
 })
 
-export class UsersComponent implements OnInit, OnDestroy {
+export class UsersComponent implements OnDestroy {
     users: User[] = [];
     newUser!: User;
     newUserVisible: boolean = false;
     private ngUnsubscribe = new Subject();
 
-    constructor(private userService: UserService) { }
-
-    ngOnInit() {
-        this.userService.getUsers()
-            .pipe(
-                startWith([]),
-                filter(users => users.length > 0),
-                takeUntil(this.ngUnsubscribe)
-            )
-            .subscribe(users => this.users = users);
+    constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {
+        this.users = this.activatedRoute.snapshot.data['users'];
     }
 
     onDisplayNewUser() {

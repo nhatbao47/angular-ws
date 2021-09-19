@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NewUserComponent } from "./new-user.component";
 import { UserComponent } from "./user.component";
+import { UsersResolverService } from "./users-resolver.service";
 import { UsersComponent } from "./users.component";
 
 @NgModule({
@@ -13,6 +14,7 @@ import { UsersComponent } from "./users.component";
         UserComponent,
         NewUserComponent
     ],
+    providers: [UsersResolverService],
     exports: [UsersComponent]
 })
 

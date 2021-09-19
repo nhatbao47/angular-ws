@@ -11,10 +11,15 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { LoginComponent } from './login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +29,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UsersModule,
     SchedulesModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
+    AuthService,
+    AuthGuardService,
     { provide: APP_CONFIG, useValue: ANGULAR_WS_CONFIG}
   ],
   bootstrap: [AppComponent]

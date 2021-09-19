@@ -1,8 +1,7 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { startWith, filter, takeUntil } from 'rxjs/operators';
-import { Subject } from "rxjs";
+import { Component, OnInit } from "@angular/core";
 import { Task, TaskState } from "./task.model";
 import { TaskService } from "./task.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'dashboard',
@@ -10,32 +9,19 @@ import { TaskService } from "./task.service";
     styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
     newTasks: Task[] = [];
     inprogressTasks: Task[] = [];
     completedTasks: Task[] = [];
     private tasks: Task[] = [];
-    private ngUnsubscribe = new Subject();
 
-    constructor(private taskService: TaskService) { }
-    
-    ngOnInit() {
-        this.taskService.getTasks()
-            .pipe(
-                startWith([]),
-                filter(tasks => tasks.length > 0),
-                takeUntil(this.ngUnsubscribe)
-            )
-            .subscribe(tasks => {
-                this.tasks = tasks;
-                this.newTasks = this.taskService.filterTasksByState(this.tasks, TaskState.New);
-                this.inprogressTasks = this.taskService.filterTasksByState(this.tasks, TaskState.Inprogress);
-                this.completedTasks = this.taskService.filterTasksByState(this.tasks, TaskState.Done);
-            });
+    constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute) {
+        this.tasks = this.activatedRoute.snapshot.data['tasks'];
     }
 
-    ngOnDestroy() {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
+    ngOnInit() {
+        this.newTasks = this.taskService.filterTasksByState(this.tasks, TaskState.New);
+        this.inprogressTasks = this.taskService.filterTasksByState(this.tasks, TaskState.Inprogress);
+        this.completedTasks = this.taskService.filterTasksByState(this.tasks, TaskState.Done);
     }
 }

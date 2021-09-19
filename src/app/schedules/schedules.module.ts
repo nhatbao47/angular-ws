@@ -6,6 +6,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BackButtonDirective } from "../common/back-button.directive";
 import { ScheduleComposerComponent } from "./schedule-composer.component";
 import { ScheduleDetailsComponent } from "./schedule-details.component";
+import { SchedulesResolverService } from "./schedules-resolver.service";
 import { SchedulesComponent } from "./schedules.component";
 import { ShortTimePipe } from "./short-time.pipe";
 
@@ -18,6 +19,7 @@ import { ShortTimePipe } from "./short-time.pipe";
         BackButtonDirective,
         ShortTimePipe
     ],
+    providers: [SchedulesResolverService],
     exports: [SchedulesComponent]
 })
 

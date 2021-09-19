@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CompletedTasksComponent } from "./completed-tasks.component";
+import { DashboardResolverService } from "./dashboard-resolver.service";
 import { DashboardComponent } from "./dashboard.component";
 import { InprogressTasksComponent } from "./inprogress-tasks.component";
 import { NewTasksComponent } from "./new-tasks.component";
@@ -19,6 +20,7 @@ import { TaskPreviewComponent } from "./task-preview.component";
         TaskPreviewComponent,
         TaskComposerComponent
     ],
+    providers: [DashboardResolverService],
     exports: [DashboardComponent]
 })
 

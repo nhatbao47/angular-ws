@@ -23,27 +23,20 @@ export class SchedulesComponent implements OnInit, OnDestroy {
         private dialogService: ConfirmationDialogService,
         private activatedRoute: ActivatedRoute,
         private route: Router
-    ) { }
+    ) {
+        this.originalSchedules = this.activatedRoute.snapshot.data['schedules'];
+    }
 
     ngOnInit() {
-        this.scheduleService.getSchedules()
-            .pipe(
-                startWith([]),
-                filter(schedules => schedules.length > 0),
-                takeUntil(this.ngUnsubscribe)
-            )
-            .subscribe(schedules => {
-                this.originalSchedules = schedules;
-                this.activatedRoute.queryParamMap.subscribe(params => {
-                    let userId = +(params.get('userId') ?? 0);
-                    if (userId > 0) {
-                        this.schedules = this.originalSchedules.filter(schedule => schedule.userId === userId);
-                        this.userFilter = true;
-                    } else {
-                        this.schedules = this.originalSchedules;
-                    }
-                });
-            });
+        this.activatedRoute.queryParamMap.subscribe(params => {
+            let userId = +(params.get('userId') ?? 0);
+            if (userId > 0) {
+                this.schedules = this.originalSchedules.filter(schedule => schedule.userId === userId);
+                this.userFilter = true;
+            } else {
+                this.schedules = this.originalSchedules;
+            }
+        });
     }
 
     onAddNewSchedule() {
