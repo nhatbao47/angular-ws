@@ -95,8 +95,9 @@ export class DataService implements InMemoryDbService {
                 creator: this.getUserName(1, users),
                 description: "Stand up",
                 location: "Osaka",
-                startDate: new Date("2021-09-01T09:00:00"),
-                endDate: new Date("2021-09-01T11:00:00")
+                date: new Date("2021-09-01"),
+                startTime: { hour: 9, minute: 0 },
+                endTime: { hour: 11, minute: 30 }
             },
             {
                 id: 2,
@@ -105,8 +106,9 @@ export class DataService implements InMemoryDbService {
                 creator: this.getUserName(2, users),
                 description: "Stand up",
                 location: "London",
-                startDate: new Date("2021-09-02T09:00:00"),
-                endDate: new Date("2021-09-02T11:00:00")
+                date: new Date("2021-09-02"),
+                startTime: { hour: 9, minute: 0 },
+                endTime: { hour: 11, minute: 30 }
             },
             {
                 id: 3,
@@ -115,8 +117,9 @@ export class DataService implements InMemoryDbService {
                 creator: this.getUserName(3, users),
                 description: "Stand up",
                 location: "New York",
-                startDate: new Date("2021-09-03T09:00:00"),
-                endDate: new Date("2021-09-03T11:00:00")
+                date: new Date("2021-09-03"),
+                startTime: { hour: 9, minute: 0 },
+                endTime: { hour: 11, minute: 30 }
             }
         ];
         return {

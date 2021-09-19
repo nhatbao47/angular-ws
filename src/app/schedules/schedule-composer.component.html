@@ -58,13 +58,41 @@
             </div>
             <div class="form-group row required">
                 <label class="col-md-2 col-form-label">Date</label>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="input-group">
-                        <input class="form-control" placeholder="dd/mm/yyyy" formControlName="startDate" ngbDatepicker #d="ngbDatepicker">
+                        <input class="form-control" formControlName="date" ngbDatepicker #d="ngbDatepicker" [ngClass]="{'is-invalid':form.date.touched && form.date.invalid}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                                 <i class="fa fa-calendar"></i>
                             </button>
+                        </div>
+                    </div>
+                    <div *ngIf="form.date.invalid && (form.date.dirty || form.date.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.date.errors?.required">
+                            Date is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-2 col-form-label">Time</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <ngb-timepicker formControlName="startTime" [spinners]="false"></ngb-timepicker>
+                        <span class="mx-2 mt-2">~</span>
+                        <ngb-timepicker formControlName="endTime" [spinners]="false"></ngb-timepicker>
+                    </div>
+                    <div *ngIf="form.startTime.invalid && (form.startTime.dirty || form.startTime.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.startTime.errors?.required">
+                            Start time is required
+                        </div>
+                    </div>
+                    <div *ngIf="form.endTime.invalid && (form.endTime.dirty || form.endTime.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.endTime.errors?.required">
+                            End time is required
                         </div>
                     </div>
                 </div>
@@ -74,8 +102,6 @@
                 <div class="col-md-10">
                     <button type="submit" class="btn btn-sm btn-primary" [disabled]="!scheduleForm.valid">
                         <i class="fa fa-save"></i> Save</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger">
-                        <i class="fa fa-trash"></i> Delete</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onCancel()">
                         <i class="fa fa-ban"></i> Cancel</button>
                 </div>

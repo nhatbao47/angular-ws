@@ -48,4 +48,9 @@ export class UserService {
     deleteUser(id: number) {
         return this.client.delete(this.userEndpoint + id);
     }
+
+    getUserName(id: number, users: User[]): string {
+        let filterUsers = users.filter(user => user.id === id);
+        return filterUsers.length > 0 ? filterUsers[0].name : '';
+    }
 }

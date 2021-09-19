@@ -1,3 +1,6 @@
+<div class="button-group mb-2">
+    <button type="button" class="btn btn-sm btn-custom" (click)="onAddNewSchedule()"><i class="fa fa-calendar-o"></i> Add</button>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -16,12 +19,12 @@
             <td>{{schedule.creator}}</td>
             <td>{{schedule.description}}</td>
             <td>{{schedule.location}}</td>
-            <td>{{schedule.startDate | date: 'MMM d, y, h:mm a'}}</td>
-            <td>{{schedule.endDate | date: 'MMM d, y, h:mm a'}}</td>
+            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.startTime.hour}}:{{schedule.startTime.minute}}</td>
+            <td>{{schedule.date | date: 'MMM d, y, '}}{{schedule.endTime.hour}}:{{schedule.endTime.minute}}</td>
             <td>
                 <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-info-circle"></i> Details</button>
                 <button type="button" class="btn btn-sm btn-primary" [routerLink]="['/schedule', schedule.id]"><i class="fa fa-pencil"></i> Edit</button>
-                <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(schedule)"><i class="fa fa-trash"></i> Delete</button>
             </td>
         </tr>
     </tbody>

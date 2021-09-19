@@ -5,6 +5,12 @@ export interface Schedule {
     creator: string;
     description: string;
     location: string;
-    startDate: Date;
-    endDate: Date;
+    date: Date;
+    startTime: ShortTime;
+    endTime: ShortTime;
+}
+
+export interface ShortTime {
+    hour: number;
+    minute: number;
 }
