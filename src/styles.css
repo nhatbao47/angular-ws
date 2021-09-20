@@ -29,3 +29,6 @@
     color: #fff;
     background-color: #3289C8;
 }
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}

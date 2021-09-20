@@ -22,6 +22,9 @@
                         Password is required
                     </div>
                 </div>
+                <div *ngIf="loginError" class="text-danger">
+                    Your username or password is not correct
+                </div>
                 <button type="submit" [disabled]="!loginForm.valid">Login</button>
                 <p class="hint">Test user: <i>admin/123456</i></p>
             </div>

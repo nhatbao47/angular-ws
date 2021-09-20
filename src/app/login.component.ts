@@ -12,12 +12,15 @@ export class LoginComponent {
         username: '',
         password: ''
     }
+    loginError = false;
 
     constructor(private authService: AuthService, private route: Router) { }
 
     onSubmit() {
         if (this.authService.login(this.model.username, this.model.password)) {
             this.route.navigate(['dashboard']);
+        } else {
+            this.loginError = true;
         }
     }
 }
