@@ -15,11 +15,13 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './common/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
